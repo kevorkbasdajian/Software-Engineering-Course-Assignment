@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+     <h1 id ="Title" class="cycler">Welcome</h1>
+     <h3 id="welcome_message"> Feel free to explore our website, where you can &nbsp;<span>add, update, and delete</span> &nbsp;movies.</h3>
+     <div id="container">
+        <div class="box">
+            <p> Add a Movie</p>
+            <a href="/add_movie">
+                <i class="fa fa-plus-circle fa-5x icon" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="box">
+            <p >Update a Movie</p>
+            <a href="/update_movie">
+                <i class="fa fa-pencil-alt fa-5x icon" aria-hidden="true"></i>
+            </a> 
+        </div>
+        <div class="box">
+            <p>Delete a Movie</p>
+            <a href="/delete_movie">
+                <i class="fa fa-trash fa-5x icon" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="box">
+            <p>Display All Movies</p>
+            <a href="/display_movies">
+                <i class="fa fa-eye fa-5x icon" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="box">
+            <p>Display a Movie</p>
+            <a href="/Display_movie">
+                <i class="fa fa-eye fa-5x icon" aria-hidden="true"></i>
+            </a>
+        </div>
+     </div>
+</body>
+</html>

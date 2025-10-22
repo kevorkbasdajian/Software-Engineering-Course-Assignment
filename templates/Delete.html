@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>Delete</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/delete_movie.css' %}">
+</head>
+<body>
+     <h1 id ="Title" class="cycler">Delete Movie</h1>
+     <h3 id="welcome_message"> Quickly delete existing movies by specifiying the ID.</h3>
+     <div id="container">
+        <div class="box">
+
+    
+            <p id="t"> Delete a Movie</p>
+            <form method="POST" style="margin-top:70px;margin-inline:10px;">
+                {% csrf_token %}
+                {{ form }}
+                <div id="btn-parent">
+                    <button type="submit" id="submit" >Delete Movie</button>
+                </div>
+            </form>
+            
+            {% if message %}
+                <p style="color:#864385 ; text-align:center;margin-top:60px">{{ message }}</p>
+            {% endif %}
+            
+            
+            
+        </div>
+        
+     </div>
+</body>
+</html>

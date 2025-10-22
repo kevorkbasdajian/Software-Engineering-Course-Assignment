@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Display Movies</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/display_movies.css' %}">
+</head>
+<body>
+    <h1 id="Title" class="cycler">Display All Movies</h1>
+    <h3 id="welcome_message"> Browse our collection of movies below.</h3>
+
+    <div id="container">
+        {% for movie in movies %}
+            <div class="box">
+                <div class="box-title">{{ movie.title }}</div>
+                <p>ID: <span class="s">{{ movie.ID }}</span></p>
+                <p>Genre: <span class="s">{{ movie.genre }}</span></p>
+                <p>Rating: <span class="s">{{ movie.rating }}</span></p>
+                <p>Director: <span class="s">{{ movie.director }}</span></p>
+                <p>Description: <span class="s">{{ movie.description }}</span></p>
+                
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+     </div>
+</body>
+</html>

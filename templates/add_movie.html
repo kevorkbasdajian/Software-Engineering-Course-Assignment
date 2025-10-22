@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/add_movie.css' %}">
+</head>
+<body>
+     <h1 id ="Title" class="cycler">Add Movie</h1>
+     <h3 id="welcome_message"> Quickly add new movies to your collection with details like title, genre, and release year.</h3>
+     <div id="container">
+        <div class="box">
+            <p style="text-align:center;"> Add a Movie</p>
+            <div id="child">
+                <form method="POST" enctype="multipart/form-data" id="form" >
+                    {% csrf_token %}  
+                    {{ form  }}
+                    
+                </form>
+            </div>
+            <div id="btn-parent">
+                        <button type="submit" id="submit" form="form">Submit</button>
+            </div>
+            
+        </div>
+        
+     </div>
+</body>
+</html>

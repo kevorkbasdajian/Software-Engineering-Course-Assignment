@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>Display</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/display_movie.css' %}">
+</head>
+<body>
+     <h1 id ="Title" class="cycler">Display a Movie</h1>
+     <h3 id="welcome_message"> Display the information of a movie by searching it up with an ID.</h3>
+     <div id="container">
+        <div class="box">
+
+            
+            {% if movie %}
+                <div class="box-title">{{ movie.title }}</div>
+                <p>ID: <span class="s">{{ movie.ID }}</span></p>
+                <p>Genre: <span class="s">{{ movie.genre }}</span></p>
+                <p>Rating: <span class="s">{{ movie.rating }}</span></p>
+                <p>Director: <span class="s">{{ movie.director }}</span></p>
+                <p>Description: <span class="s">{{ movie.description }}</span></p>
+            {% else %}
+            <p id="t"> Search by ID</p>
+            <form method="POST" style="margin-top:70px;">
+                {% csrf_token %}
+                <div style="margin-inline:30px;">
+                    {{ form }}
+                </div>
+                
+                <div id="btn-parent">
+                    <button type="submit" id="submit" >Find Movie</button>
+                </div>
+            </form>
+            
+            {% endif %}
+            
+            {% if message %}
+                <p style="color:#864385 ; text-align:center;margin-top:60px">{{ message }}</p>
+            {% endif %}
+            
+            
+            
+        </div>
+        
+     </div>
+</body>
+</html>

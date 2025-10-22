@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>Update</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/update_movie.css' %}">
+</head>
+<body>
+     <h1 id ="Title" class="cycler">Update Movie</h1>
+     <h3 id="welcome_message"> Quickly update existing movies by modifying details like title, genre, and release year.</h3>
+     <div id="container">
+        <div class="box">
+
+            
+            {% if movie %}
+                <p id="t">Editing: <span style="color: #6A66A3;font-weight:bold;">{{ movie.title }}</span></p>
+                <div id="child">
+                    <form method="POST"  id="form" >
+                        {% csrf_token %}  
+                        {{ form  }}
+                    </form>
+                </div>
+                <div id="btn-parent">
+                        <button type="submit" id="submit" form="form">Save Changes</button>
+                </div>
+            {% else %}
+            <p id="t"> Update a Movie</p>
+            <form method="POST" style="margin-top:70px;">
+                {% csrf_token %}
+                <div style="margin-inline:30px;">
+                    {{ form }}
+                </div>
+                
+                <div id="btn-parent">
+                    <button type="submit" id="submit" style="width:200px;height:80px;margin-top:90px;">Find Movie</button>
+                </div>
+            </form>
+            
+            {% endif %}
+            
+            {% if message %}
+                <p style="color:#864385 ; text-align:center;margin-top:60px">{{ message }}</p>
+            {% endif %}
+            
+            
+            
+        </div>
+        
+     </div>
+</body>
+</html>
