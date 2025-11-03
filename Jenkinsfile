@@ -9,23 +9,18 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo "=== Checking out code from GitHub ==="
-                git branch: 'master', url: 'https://github.com/kevorkbasdajian/Software-Engineering-Course-Assignment'
+                git branch: 'master', url: 'https://github.com/kevorkbasdajian/Software-Engineering-Course-Assignment.git'
             }
         }
 
         stage('Build in Minikube Docker') {
             steps {
                 bat '''
-                @echo off
-                echo === Switching Docker to Minikube Docker environment ===
-                for /f "tokens=*" %%i in ('minikube docker-env --shell cmd') do call %%i
+                REM === Switch Docker to Minikube Docker ===
+                for /f "delims=" %%i in ('minikube docker-env --shell=cmd') do %%i
 
-                echo === Building Django Docker image inside Minikube ===
+                REM === Build Django image inside Minikube Docker ===
                 docker build -t mydjangoapp:latest .
-
-                echo === Confirming image built successfully ===
-                docker images mydjangoapp:latest
                 '''
             }
         }
@@ -33,28 +28,11 @@ pipeline {
         stage('Deploy to Minikube') {
             steps {
                 bat '''
-                @echo off
-                echo === Applying updated Kubernetes deployment ===
+                REM === Apply the updated deployment manifest ===
                 kubectl apply -f deployment.yaml
 
-                echo === Restarting deployment to refresh Pods with new image ===
-                kubectl rollout restart deployment/django-deployment
-
-                echo === Waiting for rollout to complete ===
+                REM === Ensure the rollout completes ===
                 kubectl rollout status deployment/django-deployment
-
-                echo === Checking running Pods ===
-                kubectl get pods
-                '''
-            }
-        }
-
-        stage('Access Info') {
-            steps {
-                bat '''
-                @echo off
-                echo === Fetching application access URL ===
-                minikube service django-service --url
                 '''
             }
         }
