@@ -19,14 +19,21 @@ pipeline {
                 REM === Switch Docker to Minikube Docker ===
                 for /f "delims=" %%i in ('minikube docker-env --shell=cmd') do %%i
 
+                REM === Disable BuildKit to avoid hanging ===
+                set DOCKER_BUILDKIT=0
+
                 REM === Check which Docker instance Jenkins is using ===
                 echo === Checking Docker context ===
                 docker info
+
                 REM === Build Django image inside Minikube Docker ===
                 docker build -t mydjangoapp:latest .
+
+                REM === Done ===
                 '''
             }
         }
+
 
         stage('Deploy to Minikube') {
             steps {
