@@ -19,6 +19,9 @@ pipeline {
                 REM === Switch Docker to Minikube Docker ===
                 for /f "delims=" %%i in ('minikube docker-env --shell=cmd') do %%i
 
+                REM === Check which Docker instance Jenkins is using ===
+                echo === Checking Docker context ===
+                docker info
                 REM === Build Django image inside Minikube Docker ===
                 docker build -t mydjangoapp:latest .
                 '''
